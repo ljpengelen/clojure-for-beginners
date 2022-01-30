@@ -6,6 +6,7 @@
  :builds {:app {:target :browser
                 :output-dir "public/js"
                 :asset-path "/js"
+                :module-hash-names true
                 :modules {:app {:entries [cfb.core]}}
                 :devtools {:after-load cfb.core/mount-root}}}
 
