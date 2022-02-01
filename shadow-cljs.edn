@@ -1,14 +1,17 @@
 {:source-paths ["src"]
  :dependencies [[binaryage/devtools "1.0.3"]
+                [com.github.ljpengelen/shadow-cljs-hash-assets-hook "1.0.0"]
                 [nrepl "0.8.3"]
                 [org.babashka/sci "0.2.8"]
                 [reagent "1.1.0"]]
  :builds {:app {:target :browser
                 :output-dir "public/js"
                 :asset-path "/js"
-                :module-hash-names true
+                :build-hooks [(shadow-cljs-hash-assets-hook/hash-assets! {:source-root "public"
+                                                                          :target-root "dist"
+                                                                          :index "index.html"
+                                                                          :files ["css/site.css" "js/app.js"]})]
                 :modules {:app {:entries [cfb.core]}}
                 :devtools {:after-load cfb.core/mount-root}}}
-
  :dev-http {3000 {:root "public"
                   :handler user/app}}}
