@@ -1,6 +1,6 @@
 {:source-paths ["src"]
  :dependencies [[binaryage/devtools "1.0.3"]
-                [com.github.ljpengelen/shadow-cljs-hash-assets-hook "1.0.1"]
+                [com.github.ljpengelen/shadow-cljs-hash-assets-hook "1.0.2"]
                 [nrepl "0.8.3"]
                 [org.babashka/sci "0.2.8"]
                 [reagent "1.1.0"]]
