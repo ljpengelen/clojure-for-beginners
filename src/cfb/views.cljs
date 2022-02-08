@@ -14,8 +14,7 @@
                                      :height "10rem"
                                      :on-change (fn [value] (on-change value))
                                      :theme "dark"
-                                     :value expressions
-                                     :width "40rem"}])
+                                     :value expressions}])
 
 (defn check-answer-button [on-click]
   (let [is-mac? (str/includes? js/navigator.appVersion "Mac")

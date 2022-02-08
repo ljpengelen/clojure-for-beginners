@@ -13,3 +13,9 @@ svg {
 p {
   width: 30rem;
 }
+
+.app {
+  margin: 0 auto;
+  max-width: 40rem;
+  padding: 1rem;
+}
