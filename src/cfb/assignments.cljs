@@ -47,7 +47,7 @@
        "The var " [:code "x"] " below is bound to a list of random numbers. "
        "Find the second largest number."]
       [:p
-       "Clojure's " (core-link "sort") " function returns a sorted sequence. "
+       "The expression below uses Clojure's " (core-link "sort") " function, which returns a sorted sequence. "
        "Clojure offers a number of functions to take certain elements or subsets from collections and sequences, "
        "such as " (core-link "first") ", " (core-link "second") ", " (core-link "rest") ", and " (core-link "next") "."]]
      :expressions (str

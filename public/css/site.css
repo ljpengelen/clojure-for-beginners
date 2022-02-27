@@ -6,16 +6,26 @@ body {
   line-height: 1.5em;
 }
 
-svg {
-  user-select: none;
+button {
+  margin: 1rem 1rem 0 0;
+  padding: 0.25rem;
 }
 
 p {
-  width: 30rem;
+  margin: 1rem 0;
 }
 
 .app {
   margin: 0 auto;
   max-width: 40rem;
   padding: 1rem;
+}
+
+.error {
+  color: #f00;
+  margin: 1rem 0 0;
+}
+
+.result {
+  margin: 1rem 0 0;
 }

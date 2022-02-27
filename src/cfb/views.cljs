@@ -23,9 +23,9 @@
 
 (defn result [answer solution show-result?]
   (when show-result?
-    [:div
-     [:span (if (= answer solution) "YES!" "NO!")]
-     [:pre [:code (pr-str answer)]]]))
+    [:div.result
+     [:span (if (= answer solution) "✅ " "❌ ")]
+     [:code (pr-str answer)]]))
 
 (defn error [error-message]
-  [:div.error error-message])
+  (when error-message [:div.error [:code "Error: " error-message]]))

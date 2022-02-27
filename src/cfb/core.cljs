@@ -54,10 +54,11 @@
    [v/check-answer-button #(evaluate! @expressions)]
    [v/result @answer @solution @show-result?]
    [v/error @error-message]
-   [:button {:on-click show-previous-assignment!
-             :disabled (<= @index 0)} "Previous assignment"]
-   [:button {:on-click show-next-assignment!
-             :disabled (>= (inc @index) number-of-assignments)} "Next assignment"]])
+   [:div
+    [:button {:on-click show-previous-assignment!
+              :disabled (<= @index 0)} "Previous assignment"]
+    [:button {:on-click show-next-assignment!
+              :disabled (>= (inc @index) number-of-assignments)} "Next assignment"]]])
 
 (defn mount-root []
   (d/render [app] (.getElementById js/document "app")))
