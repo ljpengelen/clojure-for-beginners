@@ -31,8 +31,10 @@
 (defn evaluate! [expressions]
   (clear!)
   (try
-    (reset! answer (sci/eval-string expressions))
-    (reset! show-result? true)
+    (let [result (sci/eval-string expressions)
+          evaluated-result (if (seq? result) (doall result) result)]
+      (reset! answer evaluated-result)
+      (reset! show-result? true))
     (catch :default e (reset! error-message (.-message e)))))
 
 (defn show-next-assignment! []
