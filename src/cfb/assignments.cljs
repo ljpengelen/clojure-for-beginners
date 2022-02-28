@@ -76,8 +76,43 @@
                     sort
                     second)}))
 
+(defn destructuring []
+  (let [x (repeatedly 6 (fn [] [[(rand-int 10) (rand-int 10)] [(rand-int 10) (rand-int 10)]]))]
+    {:description
+     [:<>
+      [:p
+       "Clojure offers destructuring of function arguments. "
+       "Suppose we want to create a function that takes vectors of size two as input and swaps the elements of these vector. "
+       "Without desctructuring, we could implement that function as follows: "]
+      [:p [:code "(fn [v] [(second v) (first v)])"]]
+      [:p "Using destructuring, we could implement it as follows instead: "]
+      [:p [:code "(fn [[x y]] [y x])"]]
+      [:p
+       "Provide an implementation for the function " [:code "f"] " below, "
+       "such that it takes a tuple of two-dimensional vectors "
+       "and returns their dot product."]]
+     :expressions (str
+                   "(def x '" x ")\n\n"
+                   "(defn f [x] x)\n\n"
+                   "(map f x)")
+     :solution (map (fn [[[ax ay] [bx by]]] (+ (* ax bx) (* ay by))) x)}))
+
+(defn fibonacci []
+  (let [x (+ 10 (rand-int 50))]
+    {:description
+     [:<>
+      [:p "Calculate the first " x " numbers of the Fibonacci sequence, starting at zero."]]
+     :expressions (str
+                   "(->> [0 1]\n"
+                   "     (iterate _)\n"
+                   "     (map first)\n"
+                   "     (take _))")
+     :solution (->> [0 1] (iterate (fn [[x y]] [y (+ x y)])) (map first) (take x))}))
+
 (def assignments
   [(reverse-list)
    (find-max)
    (find-second-largest)
-   (second-smallest-even)])
+   (second-smallest-even)
+   (destructuring)
+   (fibonacci)])
