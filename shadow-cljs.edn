@@ -1,7 +1,5 @@
 {:source-paths ["src"]
- :dependencies [[binaryage/devtools "1.0.3"]
-                [com.github.ljpengelen/shadow-cljs-hash-assets-hook "1.0.2"]
-                [nrepl "0.8.3"]
+ :dependencies [[com.github.ljpengelen/shadow-cljs-hash-assets-hook "1.0.2"]
                 [org.babashka/sci "0.2.8"]
                 [reagent "1.1.0"]]
  :builds {:app {:target :browser
@@ -13,5 +11,4 @@
                                                                           :files ["css/site.css" "js/app.js"]})]
                 :modules {:app {:entries [cfb.core]}}
                 :devtools {:after-load cfb.core/mount-root}}}
- :dev-http {3000 {:root "public"
-                  :handler user/app}}}
+ :dev-http {3000 "public"}}

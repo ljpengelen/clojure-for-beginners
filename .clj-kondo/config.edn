@@ -1,3 +1,1 @@
-{:linters {:clojure-lsp/unused-public-var {:exclude #{cfb.core/init!
-                                                      user/app
-                                                      user/cljs}}}}
+{:linters {:clojure-lsp/unused-public-var {:exclude #{cfb.core/init!}}}}
