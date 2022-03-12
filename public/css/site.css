@@ -6,6 +6,10 @@ body {
   line-height: 1.5em;
 }
 
+h1 {
+  line-height: 1.1;
+}
+
 button {
   margin: 1rem 1rem 0 0;
   padding: 0.25rem;
