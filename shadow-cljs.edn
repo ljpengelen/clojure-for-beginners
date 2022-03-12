@@ -1,7 +1,9 @@
 {:source-paths ["src"]
  :dependencies [[com.github.ljpengelen/shadow-cljs-hash-assets-hook "1.0.2"]
                 [org.babashka/sci "0.2.8"]
-                [reagent "1.1.0"]]
+                [reagent "1.1.0"]
+                [metosin/reitit-core "0.5.17"]
+                [metosin/reitit-frontend "0.5.17"]]
  :builds {:app {:target :browser
                 :output-dir "public/js"
                 :asset-path "/js"

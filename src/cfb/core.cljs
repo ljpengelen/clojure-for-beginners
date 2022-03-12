@@ -3,6 +3,9 @@
             [cfb.views :as v]
             [reagent.core :as r]
             [reagent.dom :as d]
+            [reitit.frontend :as rf]
+            [reitit.frontend.controllers :as rfc]
+            [reitit.frontend.easy :as rfe]
             [sci.core :as sci]))
 
 (def number-of-assignments (count a/assignments))
@@ -22,11 +25,13 @@
   (reset! error-message nil))
 
 (defn show-assignment! [index]
-  (let [assignment (a/assignments index)]
-    (clear!)
-    (reset! description (:description assignment))
-    (reset! expressions (:expressions assignment))
-    (reset! solution (:solution assignment))))
+  (if-let [assignment (get a/assignments index)]
+    (do
+      (clear!)
+      (reset! description (:description assignment))
+      (reset! expressions (:expressions assignment))
+      (reset! solution (:solution assignment)))
+    (rfe/push-state :home)))
 
 (defn evaluate! [expressions]
   (clear!)
@@ -38,12 +43,10 @@
     (catch :default e (reset! error-message (.-message e)))))
 
 (defn show-next-assignment! []
-  (swap! index inc)
-  (show-assignment! @index))
+  (rfe/push-state :assignment {:index (inc @index)}))
 
 (defn show-previous-assignment! []
-  (swap! index dec)
-  (show-assignment! @index))
+  (rfe/push-state :assignment {:index (dec @index)}))
 
 (defn update-expressions! [new-expressions]
   (reset! expressions new-expressions))
@@ -65,6 +68,32 @@
 (defn mount-root []
   (d/render [app] (.getElementById js/document "app")))
 
+(def routes
+  (rf/router
+   [["/" {:name :home
+          :controllers [{:start (fn [_] (reset! index 0))}]}]
+    ["/assignment/:index" {:name :assignment
+                           :controllers [{:identity
+                                          (fn [match]
+                                            (js/parseInt (get-in match [:parameters :path :index])))
+                                          :start
+                                          (fn [new-index]
+                                            (reset! index new-index)
+                                            (show-assignment! @index))}]}]]))
+
+(defonce match (r/atom nil))
+
+(defn init-routes! []
+  (rfe/start!
+   routes
+   (fn [new-match]
+     (swap! match (fn [old-match]
+                    (if new-match
+                      (assoc new-match :controllers (rfc/apply-controllers (:controllers old-match) new-match))
+                      (rfe/push-state :home)))))
+   {:use-fragment false}))
+
 (defn ^:export init! []
+  (init-routes!)
   (show-assignment! @index)
   (mount-root))
