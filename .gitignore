@@ -1,9 +1,0 @@
-.calva
-.clj-kondo/*
-!.clj-kondo/config.edn
-.lsp
-.shadow-cljs
-
-dist
-node_modules
-public/js
