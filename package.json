@@ -1,6 +1,6 @@
 {
   "devDependencies": {
-    "shadow-cljs": "^2.15.13"
+    "shadow-cljs": "2.25.9"
   },
   "dependencies": {
     "@codemirror/legacy-modes": "^0.19.0",
