@@ -1,13 +1,12 @@
 (ns cfb.views
-    (:require ["@codemirror/legacy-modes/mode/clojure" :refer [clojure]]
-              ["@codemirror/stream-parser" :refer [StreamLanguage]]
+    (:require ["@nextjournal/lang-clojure" :refer [clojure]]
               ["@codemirror/view" :refer [EditorView keymap]]
               ["@uiw/react-codemirror" :default CodeMirror]
               [clojure.string :as str]
               [reagent.core :as r]))
 
 (defn editor [expressions on-change on-evaluate]
-  [(r/adapt-react-class CodeMirror) {:extensions [(.define StreamLanguage clojure)
+  [(r/adapt-react-class CodeMirror) {:extensions [(clojure)
                                                   (.of keymap #js [#js {"key" "mod-e"
                                                                         "run" on-evaluate}])
                                                   (.-lineWrapping EditorView)]
